@@ -1,4 +1,6 @@
 let Secret = require('../models/secret')
+let Secret1 = require('../models/secret-DB-1')
+
 let express = require('express')
 let router = express.Router()
 
@@ -22,6 +24,8 @@ router.get('/secret_link', (req, res) => {
     .then((response) => {
       // console.log('i need a text', response.data)
       // return res.status(200).json(response)
+
+      //Server - 1
       response.data.data.map(values => {
         let id = values._id;
         let user_name = values.name;
@@ -48,10 +52,15 @@ router.get('/secret_link', (req, res) => {
           return res.status(400).json({"Error": error})
         })
       })
+
+      //Server -2
+      
     })
     .catch(error => console.log(error))
   }
     //return res.status(200).json("hello") }
 })
+
+
 
 module.exports = router
