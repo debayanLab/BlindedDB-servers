@@ -1,6 +1,4 @@
 let Secret = require('../models/secret')
-let Secret1 = require('../models/secret-DB-1')
-
 let express = require('express')
 let router = express.Router()
 
@@ -52,15 +50,18 @@ router.get('/secret_link', (req, res) => {
           return res.status(400).json({"Error": error})
         })
       })
-
-      //Server -2
       
     })
     .catch(error => console.log(error))
   }
-    //return res.status(200).json("hello") }
+    {return res.status(200).json("Secret for server one has been placed!!!!") }
 })
 
+// router.get('/all', async(req, res) =>{
+//   await Secret.find({}, { _id: 0, __v: 0 }).lean().exec((err, result) => {
+//       res.json(result)
+//   })
+// })
 
 
 module.exports = router
