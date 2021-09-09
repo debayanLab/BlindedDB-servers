@@ -40,7 +40,7 @@ router.get('/secret_link', (req, res) => {
   // let model = new SecretModel(req.body)
   // model.save
   {
-    axios.get('https://kamakoti-server.herokuapp.com/api/users')
+    axios.get('https://blinded-db.herokuapp.com/api/users')
     .then((response) => {
       // console.log('i need a text', response.data)
       // return res.status(200).json(response)
@@ -172,6 +172,57 @@ router.get('/all-server-3', (req, res) => {
   else   
   {
     secret_3Model.find({ })
+      .then(data => {
+        res.json(data)
+      })
+      .catch(err => {
+        res.status(500).json(err)
+      });
+  }
+
+});
+
+router.put('/delete-server-1', (req, res) => {
+  if(!req.body) {
+    return res.status(400).send('Request body is missing')
+  }
+  else   
+  {
+    secret_1Model.remove({ })
+      .then(data => {
+        res.json(data)
+      })
+      .catch(err => {
+        res.status(500).json(err)
+      });
+  }
+
+});
+
+router.put('/delete-server-2', (req, res) => {
+  if(!req.body) {
+    return res.status(400).send('Request body is missing')
+  }
+  else   
+  {
+    secret_2Model.remove({ })
+      .then(data => {
+        res.json(data)
+      })
+      .catch(err => {
+        res.status(500).json(err)
+      });
+  }
+
+});
+
+router.put('/delete-server-3', (req, res) => {
+  if(!req.body) {
+    return res.status(400).send('Request body is missing')
+  }
+  else   
+  {
+    secret_3Model.remove({ })
       .then(data => {
         res.json(data)
       })
