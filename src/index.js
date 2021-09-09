@@ -4,7 +4,7 @@ let server_1Route = require('./routes/server_1')
 // let customerRoute = require('./routes/customer')
 let path = require('path')
 app.use(express.json())
-const cors =require("cors")
+//const cors =require("cors")
 
 // app.use(cors(
 //   {
