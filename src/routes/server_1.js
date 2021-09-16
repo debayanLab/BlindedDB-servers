@@ -58,73 +58,29 @@ router.get('/secret_link', (req, res) => {
             //Secret Sharing
             const secret = user_name
             shares = sss.split(secret, { shares: 3, threshold: 2 })
-            console.log(values.name)
-            console.log(shares[0])
-            let secretForm = shares[0];
-            const newSecret = new secret_1Model({
+            let secretForm0 = shares[0];
+            let secretForm1 = shares[1];
+            let secretForm2 = shares[2];
+            const newSecret0 = new secret_1Model({
               user_id: id,
-              secret_key: secretForm
+              secret_key: secretForm0
             })
-            newSecret.save().then(user => console.log('User saves', user.id)).catch(error => console.log('Error', error))
+            const newSecret1 = new secret_2Model({
+              user_id: id,
+              secret_key: secretForm1
+            })
+            const newSecret2 = new secret_3Model({
+              user_id: id,
+              secret_key: secretForm2
+            })
+            newSecret0.save().then(user => console.log('User saves', user.id)).catch(error => console.log('Error', error))
+            newSecret1.save().then(user => console.log('User saves', user.id)).catch(error => console.log('Error', error))
+            newSecret2.save().then(user => console.log('User saves', user.id)).catch(error => console.log('Error', error))
           }
         }).catch(error=> {
           return res.status(400).json({"Error": error})
         })
       })
-
-      //Server -2 
-      response.data.data.map(values => {
-        let id = values._id;
-        
-        secret_2Model.findOne({
-          user_id: id
-        }).then(data => {
-          console.log('Data', data)
-          if (data){
-            console.log('Already exists')
-          } else {
-            
-            //Secret Sharing
-            console.log(values.name)
-            console.log(shares[1])
-            secretForm = shares[1];
-            const newSecret = new secret_2Model({
-              user_id: id,
-              secret_key: secretForm
-            })
-            newSecret.save().then(user => console.log('User saves', user.id)).catch(error => console.log('Error', error))
-          }
-        }).catch(error=> {
-          return res.status(400).json({"Error": error})
-        })
-      })
-
-            //Server -3
-            response.data.data.map(values => {
-              let id = values._id;
-              
-              secret_3Model.findOne({
-                user_id: id
-              }).then(data => {
-                console.log('Data', data)
-                if (data){
-                  console.log('Already exists')
-                } else {
-                  
-                  //Secret Sharing
-                  console.log(values.name)
-                  console.log(shares[2])
-                  secretForm = shares[2];
-                  const newSecret = new secret_3Model({
-                    user_id: id,
-                    secret_key: secretForm
-                  })
-                  newSecret.save().then(user => console.log('User saves', user.id)).catch(error => console.log('Error', error))
-                }
-              }).catch(error=> {
-                return res.status(400).json({"Error": error})
-              })
-            })
     })
     .catch(error => console.log(error))
   }
